@@ -13,7 +13,6 @@ func Start() {
 
 	routes.GetUserApiRoutes(e, subsController)
 
-	// echo server 9000 de başlatıldı.
 	e.Logger.Fatal(e.Start(":8000"))
 }
 
