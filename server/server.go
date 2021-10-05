@@ -11,7 +11,7 @@ var subsController *controller.SubsController
 func Start() {
 	e := echo.New()
 
-	routes.GetUserApiRoutes(e, subsController)
+	routes.GetSubsApiRoutes(e, subsController)
 
 	e.Logger.Fatal(e.Start(":8000"))
 }
