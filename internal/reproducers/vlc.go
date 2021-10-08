@@ -6,22 +6,33 @@ type vlcReproducer struct {
 	myVLC vlcctrl.VLC
 }
 
-func NewVlcReproducer() Reproducer {
-	return &vlcReproducer{}
+func NewVlcReproducer() (Reproducer, error) {
+	vlc, err := initVlcReproducer()
+
+	if err != nil {
+		return nil, err
+	}
+
+	return &vlcReproducer{
+		myVLC: *vlc,
+	}, nil
 }
 
-func (r vlcReproducer) Init() error {
+func initVlcReproducer() (*vlcctrl.VLC, error) {
 	//TODO: create config in reproducers
 	vlc, err := vlcctrl.NewVLC("127.0.0.1", 8080, "pass123")
-	r.myVLC = vlc
 
-	return err
+	if err != nil {
+		return nil, err
+	}
+
+	return &vlc, err
 }
 
-func (r vlcReproducer) Start() error {
-	return r.Start()
+func (r vlcReproducer) Play() error {
+	return r.myVLC.Play()
 }
 
 func (r vlcReproducer) Stop() error {
-	return r.Stop()
+	return r.myVLC.Stop()
 }

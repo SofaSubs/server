@@ -1,7 +1,6 @@
 package reproducers
 
 type Reproducer interface {
-	Init() error
-	Start() error
+	Play() error
 	Stop() error
 }
