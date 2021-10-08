@@ -1,9 +1,8 @@
 package main
 
-import (
-	"github.com/SofaSubs/server/server"
-)
+import "github.com/SofaSubs/server/reader"
 
 func main() {
-	server.Start()
+	//server.Start()
+	reader.ReadSubs()
 }
