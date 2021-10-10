@@ -4,6 +4,8 @@ import (
 	"fmt"
 
 	"github.com/SofaSubs/server/controller"
+	"github.com/SofaSubs/server/db"
+	"github.com/SofaSubs/server/repository"
 	"github.com/SofaSubs/server/routes"
 	"github.com/labstack/echo/v4"
 )
@@ -22,7 +24,10 @@ func Start() {
 }
 
 func init() {
-	subsController = controller.NewSubsController()
+	db, _ := db.Init()
+	subsRepository := repository.NewSubsRepository(db)
+
+	subsController = controller.NewSubsController(subsRepository)
 	reproducerController, err = controller.NewReproducerController()
 
 	if err != nil {

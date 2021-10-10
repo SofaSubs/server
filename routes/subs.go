@@ -9,5 +9,7 @@ func GetSubsApiRoutes(e *echo.Echo, userController *controller.SubsController) {
 	v1 := e.Group("/api/v1")
 	{
 		v1.GET("/subs", userController.GetSubs)
+		v1.GET("/_subs", userController.FindSubs)
+		v1.POST("/_subs", userController.AddSub)
 	}
 }
