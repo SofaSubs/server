@@ -8,6 +8,7 @@ import (
 	"github.com/SofaSubs/server/repository"
 	"github.com/SofaSubs/server/routes"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 var subsController *controller.SubsController
@@ -16,6 +17,11 @@ var err error
 
 func Start() {
 	e := echo.New()
+
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"*"},
+		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept},
+	}))
 
 	routes.GetSubsApiRoutes(e, subsController)
 	routes.Reproducer(e, reproducerController)
