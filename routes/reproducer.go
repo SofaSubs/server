@@ -9,6 +9,8 @@ func Reproducer(e *echo.Echo, userController *controller.ReproducerController) {
 	v1 := e.Group("/api/v1")
 	{
 		v1.GET("/play", userController.Play)
+		v1.GET("/pause", userController.Pause)
 		v1.GET("/stop", userController.Stop)
+		v1.GET("/time", userController.Time)
 	}
 }
